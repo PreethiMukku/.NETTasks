@@ -1,0 +1,26 @@
+Imports System
+				
+Public Module Module1
+	Public Sub Main()
+		Dim x as Integer
+		Dim y as Integer
+		Console.WriteLine("Enter x value")
+		x = Convert.ToInt32(Console.ReadLine())
+		Console.WriteLine("Enter y value")
+		y = Convert.ToInt32(Console.ReadLine())
+		Console.WriteLine("Enter 1.Add, 2.Sub, 3.Mul, 4.Div")
+		Dim opt as Integer
+		opt = Convert.ToInt32(Console.ReadLine())
+		if(opt = 1) then
+			Console.WriteLine("Addition of numbers = "&(x+y))
+		else if(opt = 2) then
+			Console.WriteLine("Subtraction of numbers = "&(x-y))
+		else if(opt = 3) then
+			Console.WriteLine("Multiplication of numbers = "&(x*y))
+		else if(opt = 4) then
+			Console.WriteLine("Division of numbers = "&(x/y))
+		else
+			Console.WriteLine("Wrong option")
+		end if
+	End Sub
+End Module
