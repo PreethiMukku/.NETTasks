@@ -7,13 +7,11 @@ namespace Singleton	{
 			cnt++;
 			Console.WriteLine("No.of instances = "+cnt);
         }  
-        public static SingletonClass Instance {  
-            get {  
-                if (inst == null) {  
-                    inst = new SingletonClass();  
-                }  
-                return inst;  
+        public static SingletonClass getInstance() {    
+        	if (inst == null) {  
+            	inst = new SingletonClass();  
             }  
+            return inst;    
         } 
 		public void print(){
 			Console.WriteLine("Hello World");
@@ -21,9 +19,9 @@ namespace Singleton	{
 	}
     public class Example {
 		public static void Main(string[] args) {
-			SingletonClass obj1 = SingletonClass.Instance;
+			SingletonClass obj1 = SingletonClass.getInstance();
 			obj1.print();
-			SingletonClass obj2 = SingletonClass.Instance;
+			SingletonClass obj2 = SingletonClass.getInstance();
 			obj2.print();
 		}
     }  
