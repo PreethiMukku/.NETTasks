@@ -24,7 +24,7 @@ namespace Task5
         /// This takes an integer value
         /// </param>
         /// <returns>
-        /// Returns an integer value
+        /// Returns a number which is the reverse of the giving number
         /// </returns>
         public int ReverseOfNum(int n)
         {
