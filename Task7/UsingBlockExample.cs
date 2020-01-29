@@ -2,8 +2,11 @@ using System;
 using System.ComponentModel;
 using System.IO;
 
-namespace DisposeExample
+namespace UsingBlock
 {
+    /// <summary>
+    /// class implementing Idisposable interface
+    /// </summary>
     class Dispo : IDisposable
     {
         bool disposed = false;
@@ -30,7 +33,7 @@ namespace DisposeExample
             disposed = true;
 
         }
-        ~Dispo()
+        ~Dispo() 
         {
             Console.WriteLine("Destructor called.");
             Dispose(false);
@@ -41,9 +44,9 @@ namespace DisposeExample
         static void Main(string[] args)
         {
             using (Dispo obj = new Dispo())
-            {        
-                Console.WriteLine("created object");  
-            }
+            {
+                Console.WriteLine("created object");
+            } 
         }
     }
 }
