@@ -8,8 +8,8 @@ namespace MyList
 	public class Node
 	{
 		public Node next;
-		public Object data;
-		public Node(Object d)
+		public int data;
+		public Node(int d)
 		{
 			data = d;
 			next = null;
@@ -26,8 +26,8 @@ namespace MyList
 		/// <summary>
 		/// Method to add elements into list
 		/// </summary>
-		/// <param name="data">Takes object type values</param>
-		public void Add(Object data)
+		/// <param name="data">Takes integer type values</param>
+		public void Add(int data)
 		{
 			Node newNode = new Node(data);
 			
@@ -51,9 +51,9 @@ namespace MyList
 		/// <summary>
 		/// Method to Insert element at specific index
 		/// </summary>
-		/// <param name="data">Takes object Type value</param>
+		/// <param name="data">Takes integer value</param>
 		/// <param name="index">Takes integer value, which is position number</param>
-		public void Insert(Object data, int index)
+		public void Insert(int data, int index)
 		{
 			Node newNode = new Node(data);
 			
@@ -83,14 +83,14 @@ namespace MyList
 		/// <summary>
 		/// Method to find position number of element
 		/// </summary>
-		/// <param name="index">Takes integer </param>
+		/// <param name="data">Takes an integer value </param>
 		/// <returns></returns>
-		public Object Search(Object data)
+		public Object Search(int data)
 		{
 			Node current_Node = head;
 			int count = 0;
 
-			while (current_Node != null)
+			while (current_Node.next != null)
 			{
 				if (current_Node.data == data)
 					return count;
@@ -105,9 +105,9 @@ namespace MyList
 	/// <summary>
 	/// Method to check an element is in list or not
 	/// </summary>
-	/// <param name="element">Takes object type value</param>
+	/// <param name="element">Takes integer type value</param>
 	/// <returns></returns>
-		public bool Contains(Object element)
+		public bool Contains(int element)
 		{
 			Node current_Node = head;
 
@@ -151,8 +151,8 @@ namespace MyList
 		/// <summary>
 		/// Method to remove a specific element
 		/// </summary>
-		/// <param name="element">Takes data of object type</param>
-		public void Remove(Object element)
+		/// <param name="element">Takes data of integer type</param>
+		public void Remove(int element)
 		{
 			Node current_Node = head;
 
@@ -181,6 +181,24 @@ namespace MyList
 			Console.WriteLine("Element not found");
 		}
 
+		public void Sort()
+		{
+			Node temp1 = null, temp2 = null;
+			int tempData;
+			for (temp1 = head; temp1.next != null; temp1 = temp1.next)
+			{
+				for (temp2 = temp1.next; temp2 != null; temp2 = temp2.next)
+				{
+					if ((temp1.data) > temp2.data)
+					{
+						tempData = temp1.data;
+						temp1.data = temp2.data;
+						temp2.data = tempData;
+					}
+				}
+			}
+		}
+
 		/// <summary>
 		/// Method to print contents of the list
 		/// </summary>
@@ -197,6 +215,7 @@ namespace MyList
 			}
 		}
 	}
+
 	class Program
 	{
 		static void Main()
