@@ -17,6 +17,8 @@ namespace Global.asaxEvents
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Application["users"] = 0;
+
+
         }
         /// <summary>
         /// Method for Session_Start
@@ -25,10 +27,11 @@ namespace Global.asaxEvents
         /// <param name="e"></param>
         void Session_Start(object sender, EventArgs e)
         {
+            
             Application.Lock();
             Application["users"] = (int)Application["users"] + 1;
             Application.UnLock();
-            Response.Write("Session_Start" + "<br/>");
+            Response.Write("Session_Start" + "<br/>" + Application["users"]);
         }
         /// <summary>
         /// Session_End method
@@ -37,10 +40,12 @@ namespace Global.asaxEvents
         /// <param name="e"></param>
         void Session_End(object sender, EventArgs e)
         {
+            
             Application.Lock();
             Application["users"] = (int)Application["users"] - 1;
             Application.UnLock();
             Response.Write("Session_End" + "<br/>");
+
         }
         /// <summary>
         /// Application_End method
