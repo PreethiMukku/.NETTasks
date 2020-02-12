@@ -10,9 +10,6 @@
         }
         </style>
     <script src="Validator.js" type="text/javascript"></script>
-
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-    <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.validate/1.5.5/jquery.validate.min.js"></script>
    
 </head>
 <body style="height: 654px; width: 1493px">
@@ -145,57 +142,6 @@
     </form>    
 </body>
     
-      <script>
-        $(document).ready(function () {
-        $.validator.addMethod("match", function (value, element) {
-            return this.optional(element) || /^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/i.test(value);
-        }, "Please enter a valid email address.");
-        $("#<%=form.ClientID%>").validate({
-            rules: {
-                firstname: {
-                    required: true
-                },
-                lastName: {
-                    required: true
-                },
-                mail: {
-                    required: true,
-                    match: true,
-                },
-                mobile: {
-                    required: true
-                },
-                GenderList: {
-                    required: true,
-                },
-                Calendar: {
-                    required: true,
-                }
-            },
-            messages: {
-                firstname: {
-                    required: "First Name can't be blank."
-                },
-                lastName: {
-                    required: "Last Name can't be blank."
-                },
-                mail: {
-                    required: "Enter your Mail Id.",
-                    match: "Enter a valid E-mail ID.",
-                },
-                mobile: {
-                    required: "Mobile number is required."
-                },
-                GenderList: {
-                    required: "Select Gender"
-                },
-                Calendar: {
-                    required: "Select your Date Of Birth"
-                },
-            },
-        });
-    });
-    </script>
 </html>
 
 
