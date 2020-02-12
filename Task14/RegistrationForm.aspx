@@ -1,4 +1,4 @@
-<<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RegistrationForm.aspx.cs" Inherits="RegistrationForm.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RegistrationForm.aspx.cs" Inherits="RegistrationForm.WebForm1" %>
 
 <!DOCTYPE html>
 
@@ -10,6 +10,9 @@
         }
         </style>
     <script src="Validator.js" type="text/javascript"></script>
+
+  <!---  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.validate/1.5.5/jquery.validate.min.js"></script>--->
    
 </head>
 <body style="height: 654px; width: 1493px">
@@ -72,10 +75,13 @@
                     <asp:Label ID="Gender" runat="server" Text="Gender"></asp:Label>
                 </td>
                 <td>                
-                    <asp:RadioButtonList ID="GenderList" runat="server">
+                    <asp:RadioButtonList ID="genderList" runat="server">
                         <asp:ListItem Text="Male" Value="1"></asp:ListItem>
                         <asp:ListItem Text="Female" Value="2"></asp:ListItem>
                     </asp:RadioButtonList>
+                </td>
+                <td>
+                    <asp:Label ID="genderErrorMsg" runat="server"></asp:Label>
                 </td>
             </tr>
 
@@ -87,6 +93,9 @@
                     <asp:CheckBox ID="NetCheckBox" runat="server" Text=". Net" /><br/>
                     <asp:CheckBox ID="JavaCheckBox" runat="server" Text="JAVA"/><br/>
                     <asp:CheckBox ID="SdetCheckBox" runat="server" Text="SDET"/>
+                </td>
+                <td>
+                    <asp:Label ID="streamErrorMsg" runat="server"></asp:Label>
                 </td>
             </tr>
 
@@ -126,7 +135,10 @@
                     <asp:Label ID="DOB" runat="server" Text="Date of Birth"></asp:Label>
                 </td>
                 <td>
-                    <asp:Calendar ID="Calendar" runat="server"></asp:Calendar>
+                    <asp:Calendar ID="calendar" runat="server"></asp:Calendar>
+                </td>
+                <td>
+                    <asp:Label ID="calenderErrorMsg" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
@@ -134,7 +146,7 @@
                     <asp:Button ID="Button" runat="server" OnClick="formValidation" OnClientClick="return validateForm()" Text="Submit" />
                 </td>
                 <td>
-                    <asp:Button ID="Button1" runat="server" OnClientClick="return formValidation()" Text="JqueryValidation" />
+                    <asp:Button ID="Button1" runat="server" Text="JqueryValidation" CssClass="bg-success" />
                 </td>
             </tr>
         </table>  
@@ -142,6 +154,57 @@
     </form>    
 </body>
     
+      <script>
+        $(document).ready(function () {
+        $.validator.addMethod("match", function (value, element) {
+            return this.optional(element) || /^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/i.test(value);
+        }, "Please enter a valid email address.");
+        $("#<%=form.ClientID%>").validate({
+            rules: {
+                firstname: {
+                    required: true
+                },
+                lastname: {
+                    required: true
+                },
+                mail: {
+                    required: true,
+                    match: true,
+                },
+                mobile: {
+                    required: true
+                },
+                genderList: {
+                    required: true,
+                },
+                calendar: {
+                    required: true,
+                }
+            },
+            messages: {
+                firstname: {
+                    required: "First Name can't be blank."
+                },
+                lastName: {
+                    required: "Last Name can't be blank."
+                },
+                mail: {
+                    required: "Enter your Mail Id.",
+                    match: "Enter a valid E-mail ID.",
+                },
+                mobile: {
+                    required: "Mobile number is required."
+                },
+                GenderList: {
+                    required: "Select Gender"
+                },
+                Calendar: {
+                    required: "Select your Date Of Birth"
+                },
+            },
+        });
+    });
+    </script>
 </html>
 
 
